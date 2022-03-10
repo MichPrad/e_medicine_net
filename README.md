@@ -1,1 +1,1 @@
-# e_medicine_net
+# System mikrousług z aplikacją webową używająca .NET Framework dla e-medycyny.
