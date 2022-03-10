@@ -1,0 +1,18 @@
+﻿@page "/"
+@inject IController controller
+@inject IModel model
+<br>
+<br>
+<br>
+<br>
+<h2>Aplikacja e-medycyna</h2>
+<br>
+<br>
+<h3>Zaloguj się:</h3>
+<br>
+
+<label for="fname">Identyfikator Doktora:</label>
+<input type="number" min="1" name="DoctorID" class="text-box single-line" @bind="model.IdDoctor" style="width: 200px" />
+<a href="map"><RadzenButton Click="controller.GetTodaysDoctorAppointmentsAsync" Text="Login"></RadzenButton></a>
+<br>
+<br>

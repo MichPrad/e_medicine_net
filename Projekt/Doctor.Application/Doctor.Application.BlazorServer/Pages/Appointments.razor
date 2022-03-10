@@ -1,0 +1,52 @@
+﻿@page "/appointments"
+@inject IController controller
+@inject IModel model
+
+
+<RadzenButton Icon="autorenewer" Text="Odśwież" Click=@controller.GetDoctorAppointmentsAsync Style="width: 160px" />
+
+<h5 style="margin-top: 16px">Terminarz:</h5>
+
+
+<RadzenListBox Name="appointmentList" Data=@model.AppointmentList TValue="MedicalAppointmentData" SelectedItem=@model.SelectedAppointment Style="width: 324px; height: 240px" Change=@(args => OnChange(args, "ListBox"))>
+    <Template Context="appointment">
+        Pacjent: @appointment.IdPatient  @appointment.StartDateOfTheVisit.Day.@appointment.StartDateOfTheVisit.Month.@appointment.StartDateOfTheVisit.Year @appointment.StartDateOfTheVisit.Hour:@appointment.StartDateOfTheVisit.Minute
+    </Template>
+</RadzenListBox>
+<br />
+<br />
+<a><RadzenButton Icon="delete" Click=" controller.DeleteAppointmentAsync" Text="Usuń"></RadzenButton></a>
+<a href="/map"><RadzenButton Click="controller.GetTodaysDoctorAppointmentsAsync" Text="Powrót"></RadzenButton></a>
+
+
+
+
+@code {
+
+    MedicalAppointmentData value;
+
+    protected override void OnInitialized()
+    {
+        Thread.Sleep(500);
+        InvokeAsync(() =>
+        {
+
+            StateHasChanged();
+        });
+    }
+
+
+
+    void OnChange(object value, string name)
+    {
+        MedicalAppointmentData appointmentData = value as MedicalAppointmentData;
+        model.SelectedAppointment = appointmentData;
+
+    }
+
+    void OnLoadData(LoadDataArgs args)
+    {
+
+    }
+}
+

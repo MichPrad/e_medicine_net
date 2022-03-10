@@ -1,0 +1,48 @@
+﻿@page "/map"
+@inject IController controller
+@inject IModel model
+
+
+
+
+
+
+<div id="main" style="display: grid; column-gap:1px;">
+
+    <div id="closest-appointments" style="grid-column:1; justify-self:end">
+        <h5>Twoje ID: @model.IdDoctor</h5>
+
+        <RadzenButton Icon="autorenew" Text="Odśwież" Click=@controller.GetTodaysDoctorAppointmentsAsync Style="width: 160px" />
+
+        <h5 style="margin-top: 16px">Najbliższe wizyty:</h5>
+
+        <RadzenListBox Name="closeAppointmentList" Data=@model.AppointmentList TValue="MedicalAppointmentData" SelectedItem=@model.SelectedAppointment Style="width: 400px; height: 400px;border:5px outset #FF6D41;">
+            <Template Context="closeAppointment">
+                Pacjent: @closeAppointment.IdPatient @closeAppointment.StartDateOfTheVisit.Day.@closeAppointment.StartDateOfTheVisit.Month.@closeAppointment.StartDateOfTheVisit.Year. @closeAppointment.StartDateOfTheVisit.Hour:@closeAppointment.StartDateOfTheVisit.Minute
+            </Template>
+        </RadzenListBox>
+    </div>
+
+
+    <div id="buttons" style="grid-column:2; display:grid">
+        <a style="grid-row: 2;" href="addPrescription"><RadzenButton Text="Wypisz receptę" Style=" width: 300px;"></RadzenButton></a>
+        <a style="grid-row: 3;" href="appointments"><RadzenButton Click="controller.GetDoctorAppointmentsAsync" Text="Terminarz" Style=" width: 300px;"></RadzenButton></a>
+        <a style="grid-row: 4;" href="prescriptions"><RadzenButton Click="controller.GetAllDoctorPrescriptionsAsync" Text="Wystawione recepty" Style=" width: 300px;"></RadzenButton></a>
+        <a style="grid-row: 5;" href="settings"><RadzenButton Icon="build" Text="Ustawienia" Style=" width: 300px;"></RadzenButton></a>
+        <a style="grid-row: 6; " href=""><RadzenButton Text="Wyloguj" style="width:300px; "></RadzenButton></a>
+
+    </div>
+</div>
+
+
+@code {
+    protected override void OnInitialized()
+    {
+        Thread.Sleep(500);
+        InvokeAsync(() =>
+        {
+
+            StateHasChanged();
+        });
+    }
+}

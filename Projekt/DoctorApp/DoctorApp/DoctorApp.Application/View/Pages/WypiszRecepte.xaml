@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="DoctorApp.Application.View.Pages.WypiszReceptePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DoctorApp.Application.View.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid x:Name="wypiszReceptePage" Background="CornflowerBlue" Grid.Row="0" Width="520" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <FlyoutBase.AttachedFlyout>
+            <DatePickerFlyout/>
+        </FlyoutBase.AttachedFlyout>
+        <StackPanel x:Name="WypiszReceptyTitlePanel" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="WypiszReceptyTitle" Text="Wypisz receptę" Width="244" FontSize="35" HorizontalAlignment="Center" Margin="0,27,0,369"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="68,109,0,0" Text="ID PACJENTA: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026"/>
+        <TextBox Name="id" HorizontalAlignment="Left" PlaceholderText="" Margin="205,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="240" Text="{x:Bind Model.PatId, Mode=TwoWay}"/>
+
+
+        <TextBlock Margin="68,145,0,0" Text="DATA WAŻNOŚCI: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026" HorizontalAlignment="Left" Width="113"/>
+
+        <DatePicker x:Name="arrivalDatePicker" RenderTransformOrigin="2.582,0.281" Margin="123,177,0,0" VerticalAlignment="Top" SelectedDateChanged="ArrivalDatePicker_SelectedDateChanged" Width="322"/>
+
+        <TextBlock Margin="68,242,0,0" Text="LEK 1: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026" HorizontalAlignment="Left" Width="49"/>
+        <TextBox Name="lek1Name" HorizontalAlignment="Left" PlaceholderText="" Margin="122,235,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="{x:Bind Model.Lek1, Mode=TwoWay}"/>
+
+
+        <TextBlock Margin="273,241,0,0" Text="DAWKA: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026" HorizontalAlignment="Left" Width="58"/>
+        <TextBox Name="lek1Dawka" HorizontalAlignment="Left" PlaceholderText="" Margin="340,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="{x:Bind Model.Dawka1, Mode=TwoWay}"/>
+
+
+
+        <TextBlock Margin="68,283,0,0" Text="LEK 2: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026" HorizontalAlignment="Left" Width="49"/>
+        <TextBox Name="lek2Name" HorizontalAlignment="Left" PlaceholderText="" Margin="122,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="{x:Bind Model.Lek2, Mode=TwoWay}"/>
+
+
+        <TextBlock Margin="273,283,0,0" Text="DAWKA: " TextWrapping="Wrap" VerticalAlignment="Top" SelectionChanged="TextBlock_SelectionChanged" RenderTransformOrigin="0.554,-4.026" HorizontalAlignment="Left" Width="58"/>
+        <TextBox Name="lek2Dawka" HorizontalAlignment="Left" PlaceholderText="" Margin="340,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="105" Text="{x:Bind Model.Dawka2, Mode=TwoWay}"/>
+
+
+        <Button Content="DODAJ RECEPTĘ" HorizontalAlignment="Center" Margin="0,330,0,0" VerticalAlignment="Top"  Click="Button_Check" Command="{x:Bind Controller.AddPrescriptionCommand}"/>
+        <Button Content="Powrót" Margin="0,384,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="Button_Back"/>
+
+    </Grid>
+</Page>

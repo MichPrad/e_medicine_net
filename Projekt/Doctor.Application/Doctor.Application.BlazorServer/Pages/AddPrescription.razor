@@ -1,0 +1,61 @@
+﻿@page "/addPrescription"
+@inject IController controller
+@inject IModel model
+
+<h5 style="margin-top: 16px">Wypisz receptę</h5>
+
+<label for="fname">ID PACJENTA:</label>
+<br>
+<input name="PatientID" class="text-box single-line" @bind="model.PatId" style="width: 200px" />
+<br>
+
+<label for="fname">Data Ważności:</label>
+<br>
+<input type="date" name="Date" class="text-box single-line" @bind="model.ExpireDate" style="width: 200px" />
+<br>
+
+<label for="fname">LEK 1:</label>
+<br>
+<input name="lek1" class="text-box single-line" @bind="model.Lek1" style="width: 200px" />
+<br>
+
+<label for="fname">DAWKA:</label>
+<br>
+<input name="dawka1" class="text-box single-line" @bind="model.Dawka1" style="width: 200px" />
+<br>
+
+<label for="fname">LEK 2:</label>
+<br>
+<input name="lek2" class="text-box single-line" @bind="model.Lek2" style="width: 200px" />
+<br>
+
+<label for="fname">DAWKA:</label>
+<br>
+<input name="dawka2" class="text-box single-line" @bind="model.Dawka2" style="width: 200px" />
+<br>
+<br />
+
+<a><RadzenButton Click="controller.AddPrescriptionAsync" Text="DODAJ RECEPTĘ"></RadzenButton></a>
+<br>
+<br />
+
+<a href="/map"><RadzenButton Click="controller.GetTodaysDoctorAppointmentsAsync" Text="Powrót"></RadzenButton></a>
+<br>
+<br />
+
+
+
+@code {
+
+    private IController controller_ = ControllerFactory.GetController(new EventDispatcher());
+
+    protected override async Task OnInitializedAsync()
+    {
+        IModel model1 = controller_.Model;
+
+        IModel model2 = controller.Model;
+
+        IModel model3 = model;
+    }
+
+}

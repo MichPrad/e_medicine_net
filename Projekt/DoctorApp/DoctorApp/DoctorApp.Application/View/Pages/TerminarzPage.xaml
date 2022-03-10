@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="DoctorApp.Application.View.TerminarzPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:icore="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:model="using:DoctorApp.Application.Model"
+    xmlns:controller="using:DoctorApp.Application.Controller" xmlns:i1="using:Windows.UI.Xaml" xmlns:model1="using:DoctorApp.Application.Model.Data" xmlns:view="using:DoctorApp.Application.View">
+
+    <Page.Resources>
+        <view:MedicalAppointmentDataConverter x:Key="MedicalAppointmentDataConverter" />
+
+        <DataTemplate x:Key="AppointmetsListViewTemplate" x:DataType="model1:MedicalAppointmentData">
+            <TextBlock Text="{x:Bind Mode=OneTime, Converter={StaticResource MedicalAppointmentDataConverter}}" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid x:Name="terminarzPage" Background="CornflowerBlue" Grid.Row="0" Width="520" Height="450" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel x:Name="TerminarzTitlePanel" HorizontalAlignment="Center"/>
+        <TextBlock x:Name="TerminarzTitle" Text="Terminarz" Width="195" FontSize="45" HorizontalAlignment="Left" Margin="164,10,0,385"/>
+
+
+        <ListView x:Name="ListTerminarz" ItemsSource="{x:Bind Mode=OneWay, Path=Model.AppointmentList}" ItemTemplate="{StaticResource AppointmetsListViewTemplate}" SelectedItem="{x:Bind Mode=TwoWay, Path=Model.SelectedAppointment}" BorderThickness="1" BorderBrush="{ThemeResource SystemControlForegroundBaseMediumLowBrush}" Width="500"  HorizontalAlignment="Center" Margin="0,82,0,10" />
+        <AppBarButton x:Name="DeleteAppointment" Icon="Cancel" Label="Usuń" HorizontalAlignment="Right" Margin="0,12,26,0"/>
+        <AppBarButton x:Name="TerminarzGoBack" Icon="Back" Label="Powrót" HorizontalAlignment="Right" Click="Click_goBack"  Margin="0,10,427,0" Height="60" Width="93"/>
+
+
+    </Grid>
+</Page>
